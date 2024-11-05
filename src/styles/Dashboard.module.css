@@ -1,0 +1,36 @@
+
+.dashboardContainer {
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+.contentContainer {
+  display: flex;
+  gap: 50px;
+}
+
+.tableContainer {
+  flex: 0.4
+}
+
+.chartContainer {
+  flex: 0.6; 
+}
+
+.tableContainer {
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.chartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
