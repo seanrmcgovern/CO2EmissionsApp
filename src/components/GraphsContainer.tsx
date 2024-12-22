@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import EmissionsLineChart from './graphs/EmissionsLineChart';
 import BarChart from './graphs/BarChart';
+import PieChart from './graphs/PieChart';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -40,6 +41,7 @@ const GraphsContainer: React.FC = () => {
         <Tabs value={value} onChange={handleChange} TabIndicatorProps={{sx: { background:'#022D5B' }}} >
           <Tab label="Line Graph" />
           <Tab label="Bar Graph" />
+          <Tab label="Pie Chart" />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -47,6 +49,9 @@ const GraphsContainer: React.FC = () => {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <BarChart />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <PieChart />
       </CustomTabPanel>
     </Box>
   );

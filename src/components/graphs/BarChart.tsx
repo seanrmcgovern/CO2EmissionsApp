@@ -35,7 +35,7 @@ const EmissionsBarChart: React.FC = () => {
             onChange={handleChange}
           >
             {yearOptions(1960, 2023).map((year) => (
-              <MenuItem value={year}>{year}</MenuItem>
+              <MenuItem key={year} value={year}>{year}</MenuItem>
             ))}
           </Select>
         </FormControl>

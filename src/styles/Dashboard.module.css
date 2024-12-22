@@ -19,7 +19,7 @@
 
 .tableContainer {
   max-height: 80vh;
-  overflow-y: auto;
+  overflow: hidden;
   border: 1px solid #ddd;
   padding: 10px;
   box-sizing: border-box;

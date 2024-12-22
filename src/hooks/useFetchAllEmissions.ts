@@ -9,7 +9,6 @@ export const useFetchAllEmissions = () => {
 
     useEffect(() => {
         const fetchEmissionsData = async () => {
-            console.log("fetching all emissions");
             setLoading(true);
             try {
                 const response = await axios.get('/GetEmissions');

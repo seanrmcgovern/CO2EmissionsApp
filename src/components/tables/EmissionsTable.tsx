@@ -8,8 +8,6 @@ interface EmissionsTableProps {
 
 const EmissionsTable: React.FC<EmissionsTableProps> = ({ data }) => {
 
-    console.log({data});
-
     return (
         <TableContainer component={Paper}>
             <Table sx={{ maxHeight: 400, width: '100%' }}>

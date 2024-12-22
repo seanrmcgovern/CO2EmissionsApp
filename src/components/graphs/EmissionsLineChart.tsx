@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { useFetchCountries } from '../../hooks/useFetchCountries';
 import { useFetchEmissionsByCountry } from '../../hooks/useFetchEmissionsByCountry';
@@ -12,13 +12,22 @@ const EmissionsLineChart: React.FC = () => {
 
     const { countryData } = useFetchCountries();
 
-    const [selectedCountry, setSelectedCountry] = useState<string>("6");
+    const [selectedCountry, setSelectedCountry] = useState<string>('');
 
     const handleChange = (event: SelectChangeEvent) => {
       setSelectedCountry(event.target.value);
     };
 
-    const { countryEmissionsData } = useFetchEmissionsByCountry(Number(selectedCountry));
+    const { countryEmissionsData } = useFetchEmissionsByCountry(selectedCountry !== '' ? Number(selectedCountry) : 1);
+
+    useEffect(() => {
+      if (countryData) {
+        // set default to United States
+        if (countryData.length === 6) {
+          setSelectedCountry(countryData[5].id.toString());
+        }
+      }
+    }, [countryData]);
 
     return (
       <div>
@@ -33,7 +42,7 @@ const EmissionsLineChart: React.FC = () => {
             onChange={handleChange}
           >
             {countryData.map((country: Country) => (
-              <MenuItem value={country.id}>{country.name}</MenuItem>
+              <MenuItem key={country.id} value={country.id}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>

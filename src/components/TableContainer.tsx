@@ -12,9 +12,9 @@ const TableContainer: React.FC = () => {
   const { emissionsData, fetchEmissionsData } = useFetchEmissionsByYearRangeAndCountry();
 
   const { data } = useFetchAllEmissions();
-  const [tableData, setTableData] = useState<EmissionData[]>([]); // useFetchAllEmissions().data
+  const [tableData, setTableData] = useState<EmissionData[]>([]);
 
-  const [selectedCountry, setSelectedCountry] = useState<string>("6");
+  const [selectedCountry, setSelectedCountry] = useState<string>('');
 
   const minYear = 1960;
   const maxYear = 2022;
@@ -43,9 +43,24 @@ const TableContainer: React.FC = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (countryData) {
+      // set default to United States
+      if (countryData.length === 6) {
+        setSelectedCountry(countryData[5].id.toString());
+      }
+    }
+  }, [countryData]);
+
   return (
-    <div>
-      <Box component="form" display="flex" flexDirection="column" gap={2}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Box 
+        component="form" 
+        display="flex" 
+        flexDirection="column" 
+        gap={2} 
+        style={{ padding: '16px', borderBottom: '1px solid #ddd', overflow: 'hidden' }}
+      >
         <FormControl fullWidth>
           <InputLabel id="country-select-label">Country</InputLabel>
           <Select
@@ -58,7 +73,7 @@ const TableContainer: React.FC = () => {
               <em>All Countries</em>
             </MenuItem>
             {countryData.map((country: Country) => (
-              <MenuItem value={country.id}>{country.name}</MenuItem>
+              <MenuItem key={country.id} value={country.id}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -81,7 +96,9 @@ const TableContainer: React.FC = () => {
         </Button>
         <br></br>
       </Box>
-      <EmissionsTable data={tableData}/>
+      <Box style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+        <EmissionsTable data={tableData} />
+      </Box>
     </div>
   );
 };

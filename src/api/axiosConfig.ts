@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 const API_KEY = import.meta.env.VITE_CO2_EMISSIONS_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const axiosInstance = axios.create({
-    baseURL: 'https://co2-emissions-api-fwc3fmf0h8f9ekew.canadacentral-01.azurewebsites.net/api/Emissions',
+    baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
         'x-api-key': API_KEY

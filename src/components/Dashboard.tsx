@@ -9,11 +9,11 @@ const Dashboard: React.FC = () => {
         <div className={styles.dashboardContainer}>
           <h1>CO2 Emissions Dashboard</h1>
           <div className={styles.contentContainer}>
-              <div className={styles.tableContainer}>
-                  <TableContainer />
-              </div>
               <div className={styles.chartContainer}>
                   <GraphsContainer />
+              </div>
+              <div className={styles.tableContainer}>
+                  <TableContainer />
               </div>
           </div>
       </div>
